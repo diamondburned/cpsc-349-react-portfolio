@@ -9,7 +9,6 @@ export default function Bio({ object }: { object: ObjectDocument }) {
 
   return (
     <div id="bio" className={avatarHovered ? "avatar-hovered" : ""}>
-      <BubblesOverlay />
       <div className="info-background">
         <header id="info">
           <div
