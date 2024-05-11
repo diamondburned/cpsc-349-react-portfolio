@@ -2,21 +2,28 @@ import "./Bio.scss";
 import { type ObjectDocument } from "../lib/0xd14";
 import { links } from "../lib/0xd14";
 import { useState } from "react";
+import { BubblesOverlay } from "./Bubbles";
 
 export default function Bio({ object }: { object: ObjectDocument }) {
-  const [infoHovered, setInfoHovered] = useState(false);
+  const [avatarHovered, setHoverAvatar] = useState(false);
 
   return (
-    <div id="bio" className={infoHovered ? "info-hovered" : ""}>
-      <div
-        className="info-background"
-        onMouseEnter={() => setInfoHovered(true)}
-        onMouseLeave={() => setInfoHovered(false)}
-      >
+    <div id="bio" className={avatarHovered ? "avatar-hovered" : ""}>
+      <BubblesOverlay />
+      <div className="info-background">
         <header id="info">
-          <div className="avatar-box">
+          <div
+            className="avatar-box"
+            onMouseEnter={() => setHoverAvatar(true)}
+            onMouseLeave={() => setHoverAvatar(false)}
+          >
             <div className="avatar">
-              <img src="https://libdb.so/_assets/avatar.webp" alt="Avatar" />
+              <img
+                className="front"
+                src="https://avatars.githubusercontent.com/u/8463786?v=4"
+                alt="Avatar"
+              />
+              <img className="back" src="/self-drone.webp" alt="Avatar back-side" />
             </div>
           </div>
           <hgroup className="content">
@@ -55,6 +62,7 @@ function BioContent({ object }: { object: ObjectDocument }) {
         <div className="content">
           {links.map((link) => (
             <a
+              key={link.url}
               href={link.url!}
               role="button"
               style={{ "--color": link.color } as React.CSSProperties}
@@ -75,7 +83,7 @@ function BioContent({ object }: { object: ObjectDocument }) {
         </hgroup>
         <div className="content">
           {object.resume!.projects!.map((project) => (
-            <article>
+            <article key={JSON.stringify(project)}>
               <header>
                 <a href={"https://" + project.website!} target="_blank" className="project-link">
                   <h3 className="project-name">{project.name}</h3>
@@ -98,7 +106,7 @@ function BioContent({ object }: { object: ObjectDocument }) {
         </hgroup>
         <div className="content">
           {object.resume!.work!.map((work) => (
-            <article>
+            <article key={JSON.stringify(work)}>
               <header>
                 <h3>
                   <span className="position">{work.position}</span>
@@ -114,7 +122,7 @@ function BioContent({ object }: { object: ObjectDocument }) {
               </header>
               <ul>
                 {work.highlights!.map((highlight) => (
-                  <li>{highlight}</li>
+                  <li key={highlight}>{highlight}</li>
                 ))}
               </ul>
             </article>
