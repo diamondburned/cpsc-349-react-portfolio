@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Hachi+Maru+Pop&family=Indie+Flower&family=Jost:ital,wght@0,100..900;1,100..900&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css");
+
+:root {
+  --border-radius: 0.5rem;
+  --animation-quadratic: cubic-bezier(0.46, 0.03, 0.52, 0.96);
+  --animation-sine: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Reddit Sans", "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: clamp(1rem, 2.25vw, 1.25rem);
+  margin: 0;
+  line-height: 1.5;
+}
+
+pre,
+code {
+  font-family: "Fira Code", monospace;
+  font-size: 0.9em;
+}
+
+hgroup {
+  margin: 2.5em 0;
+  * {
+    margin: 0.5em 0;
+  }
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline dashed;
+  }
+}
+
+code {
+  background-color: var(--pico-color-grey-100);
+  padding: 0.15em 0.25em;
+  border-radius: calc(var(--border-radius) / 2);
+}
+
+#root {
+  display: contents;
+}

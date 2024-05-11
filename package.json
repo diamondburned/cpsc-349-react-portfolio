@@ -1,0 +1,35 @@
+{
+  "name": "my-vue-app",
+  "type": "module",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@kurone-kito/jsonresume-types": "^0.4.0",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "prettier": "^3.2.5",
+    "sass": "^1.77.0",
+    "schema-dts": "^1.1.2",
+    "super-tiny-icons": "^0.6.0",
+    "typescript": "^5.2.2",
+    "typescript-language-server": "^4.3.3",
+    "vite": "^5.2.0"
+  },
+  "prettier": {
+    "printWidth": 100
+  }
+}

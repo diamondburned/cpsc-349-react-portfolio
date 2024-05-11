@@ -1,0 +1,414 @@
+@use "sass:math";
+
+@mixin container {
+  max-width: clamp(500px, 85vw, 750px);
+  margin: calc(2 * clamp(1rem, 4vw, 2rem)) auto;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+}
+
+@mixin wave {
+  --R: calc(var(--size) * sqrt(var(--m) * var(--m) + 1));
+
+  mask:
+    radial-gradient(
+        var(--R) at left 50% var(--d) calc(var(--size) * (1 + var(--m))),
+        #000 99.9999%,
+        #0000 100.5%
+      )
+      calc(50% - 2 * var(--size)) 0 / calc(4 * var(--size)) 100%,
+    radial-gradient(
+        var(--R) at left 50% var(--d) calc(-1 * var(--size) * var(--m)),
+        #0000 99.9999%,
+        #000 100.5%
+      )
+      left 50% var(--d) var(--size) / calc(4 * var(--size)) 100% repeat-x;
+}
+
+#bio {
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: auto;
+  perspective: 3px;
+
+  --background-shift-y: 200px;
+  --background-color-1: var(--pico-color-fuchsia-100);
+  --background-color-2: var(--pico-color-cyan-50);
+
+  background-position: 0 calc(-1 * var(--background-shift-y));
+  background-size: 100% calc(100% + var(--background-shift-y));
+  background-color: var(--background-color-1);
+  background-image: linear-gradient(
+    to bottom,
+    var(--background-color-1) 0,
+    var(--background-color-1) var(--background-shift-y),
+    var(--background-color-2) calc(var(--background-shift-y) + 600px),
+    var(--background-color-2) 100%
+  );
+
+  transition: background-position 0.35s ease-in-out;
+
+  &.info-hovered {
+    background-position: 0 0;
+  }
+
+  .main-content > section {
+    @include container;
+
+    hgroup {
+      --wobble-value: 4%;
+
+      text-align: center;
+      animation: wobble-up-down 2s infinite var(--animation-quadratic);
+
+      h2 {
+        font-size: 2em;
+        width: fit-content;
+        margin: 0 auto;
+        rotate: var(--rotation, 0deg);
+      }
+
+      p {
+        rotate: calc(-1 * var(--rotation));
+      }
+    }
+  }
+
+  .main-content > footer {
+    @include container;
+    margin-bottom: 0;
+    border-top: 1px solid var(--pico-color-slate-150);
+
+    font-size: 0.75em;
+    color: var(--pico-color-grey-600);
+
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .info-background {
+    padding-bottom: 5rem;
+    transform: translateZ(-1.5px) scale(1.5);
+  }
+
+  .main-content-shadow {
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+  }
+
+  .main-content {
+    @include wave;
+    --size: 50px;
+    --m: 5;
+    --d: top;
+
+    background-color: rgba(255, 255, 255, 0.95);
+    padding-top: var(--size);
+    padding-bottom: 1em;
+  }
+
+  #info {
+    @include container;
+
+    --avatar-size: clamp(150px, 30vw, 250px);
+    --avatar-frame: calc(var(--avatar-size) * 1.35);
+
+    display: flex;
+
+    .avatar-box {
+      width: var(--avatar-frame);
+      height: var(--avatar-frame);
+      max-width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      --wobble-value: 2.5%;
+      --rotate-value: 1.5deg;
+
+      animation:
+        wobble-up-down 2s,
+        slight-rotate 3s;
+      animation-iteration-count: infinite;
+      animation-timing-function: var(--animation-quadratic), var(--animation-sine);
+    }
+
+    .avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        max-width: var(--avatar-size);
+        width: 100%;
+        height: auto;
+        rotate: -60deg;
+        border-radius: calc(3 * var(--border-radius));
+      }
+    }
+
+    .content {
+      --wobble-value: 2.5%;
+      animation: wobble-up-down 2s infinite var(--animation-quadratic);
+
+      margin: 0;
+
+      align-self: end;
+      font-size: 2em;
+      font-weight: 600;
+      margin-left: clamp(-30px, -3%, 0px);
+      line-height: 1.25;
+
+      * {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      h1::after {
+        content: "!";
+        font-weight: initial;
+      }
+    }
+
+    &:hover {
+    }
+
+    @media (max-width: 420px) {
+      flex-direction: column;
+      align-items: center;
+
+      .avatar-box {
+        margin: 0 auto;
+      }
+
+      .content {
+        margin-left: 0;
+        align-self: center;
+        width: min-content;
+      }
+    }
+  }
+
+  #introduction {
+    @include container;
+
+    font-size: 1.15em;
+    line-height: 1.75;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    white-space: break-spaces;
+
+    &::before,
+    &::after {
+      content: "✨";
+      font-size: 2em;
+      margin: 0 0.5rem;
+    }
+  }
+
+  #links {
+    h2 {
+      color: var(--pico-color-orange-600);
+    }
+
+    $colors: (
+      (
+        50: var(--pico-color-purple-50),
+        100: var(--pico-color-purple-100),
+        600: var(--pico-color-purple-600),
+      ),
+      (
+        50: var(--pico-color-cyan-50),
+        100: var(--pico-color-cyan-100),
+        600: var(--pico-color-cyan-600),
+      ),
+      (
+        50: var(--pico-color-pink-50),
+        100: var(--pico-color-pink-100),
+        600: var(--pico-color-pink-600),
+      ),
+      (
+        50: var(--pico-color-green-50),
+        100: var(--pico-color-green-100),
+        600: var(--pico-color-green-600),
+      )
+    );
+
+    .content {
+      margin-top: 2rem;
+
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    a[role="button"] {
+      width: 135px;
+
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+          $color: nth($colors, $i % length($colors) + 1);
+
+          color: map-get($color, 600);
+          background-color: map-get($color, 50);
+          &:hover {
+            background-color: map-get($color, 100);
+          }
+        }
+      }
+
+      transition: background-color 0.15s ease-in-out;
+
+      padding: 1rem;
+      border-radius: calc(1.5 * var(--border-radius));
+
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      text-align: center;
+      text-decoration: none;
+
+      span {
+        font-size: 1.25em;
+        font-weight: 600;
+      }
+
+      img {
+        max-width: 80px;
+        margin-bottom: 0.5em;
+        border-radius: var(--border-radius);
+      }
+    }
+  }
+
+  #projects {
+    h2 {
+      color: var(--pico-color-blue-600);
+    }
+
+    article {
+      margin: 1em 0;
+
+      p {
+        margin: 0;
+      }
+
+      header {
+        color: var(--pico-color-blue-600);
+
+        a {
+          text-decoration: none;
+
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: row;
+          align-items: baseline;
+          justify-content: space-between;
+
+          &,
+          &:visited {
+            color: inherit;
+          }
+
+          &:hover {
+            text-decoration: underline dashed;
+          }
+
+          p {
+            font-size: 0.85em;
+          }
+        }
+
+        * {
+          margin: 0;
+        }
+      }
+
+      p.project-description {
+        margin: 0.5em 0;
+      }
+
+      footer {
+        font-size: 0.85em;
+        color: var(--pico-color-grey-500);
+
+        .keywords {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  #work {
+    h2 {
+      color: var(--pico-color-green-600);
+    }
+
+    article {
+      header {
+        h3 {
+          margin: 0;
+          color: var(--pico-color-green-600);
+
+          span:not(:last-child) {
+            font-weight: 400;
+          }
+          span:not(:first-child) {
+            margin-left: 0.25em;
+          }
+        }
+
+        p {
+          margin: 0;
+
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      }
+
+      ul {
+        padding-left: 1.5em;
+        li {
+          padding: 0 0.25em;
+          margin: 0.85em 0;
+          font-size: 0.85em;
+        }
+      }
+    }
+  }
+
+  @keyframes wobble-up-down {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(var(--wobble-value, 2%));
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slight-rotate {
+    0% {
+      rotate: 0deg;
+    }
+    50% {
+      rotate: var(--rotate-value, 2deg);
+    }
+    100% {
+      rotate: 0deg;
+    }
+  }
+}
