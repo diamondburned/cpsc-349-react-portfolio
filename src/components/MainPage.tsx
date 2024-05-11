@@ -9,7 +9,7 @@ export default function MainPage() {
   const [object, setObject] = useState<ObjectDocument>();
   useEffect(() => {
     load().then((object) => setObject(object));
-  });
+  }, []);
 
   // return (
   // <main id="main-page">
