@@ -6,6 +6,7 @@ import { useState } from "react";
 export default function Bio({ object }: { object: ObjectDocument }) {
   const [avatarHovered, setHoverAvatar] = useState(false);
 
+  // TODO: add Bubbles component
   return (
     <div id="bio" className={avatarHovered ? "avatar-hovered" : ""}>
       <div className="info-background">
@@ -52,6 +53,37 @@ function BioContent({ object }: { object: ObjectDocument }) {
         </p>
       </section>
 
+      <section id="information">
+        <table>
+          <tr id="pronouns">
+            <th>Pronouns</th>
+            <td>
+              <StringList list={object.pronouns!} />
+            </td>
+          </tr>
+          <tr id="birthday">
+            <th>Birthday</th>
+            <td>
+              {new Date(Date.parse(object.birthDate as string)).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </td>
+          </tr>
+          <tr id="height">
+            <th>Height</th>
+            <td>{object.height! as string}</td>
+          </tr>
+          <tr id="languages">
+            <th>Languages</th>
+            <td>
+              <StringList list={(object.knowsLanguage as string[]).map(expandLanguage)} />
+            </td>
+          </tr>
+        </table>
+      </section>
+
       <section id="projects">
         <hgroup>
           <h2>Projects</h2>
@@ -68,7 +100,9 @@ function BioContent({ object }: { object: ObjectDocument }) {
               </header>
               <p className="project-description">{project.description}</p>
               <footer>
-                <p className="keywords">{project.keywords!.join(", ")}</p>
+                <p className="keywords">
+                  <StringList list={project.keywords!} />
+                </p>
               </footer>
             </article>
           ))}
@@ -179,6 +213,36 @@ function BioFooter() {
   );
 }
 
+function StringList({ list }: { list: string[] }) {
+  const punct = (i: number) => {
+    if (i < list.length - 2) {
+      return ", ";
+    }
+    if (i < list.length - 1) {
+      return " and ";
+    }
+    return "";
+  };
+  return list.map((item, i) => (
+    <span key={item}>
+      <span className="item">{item}</span>
+      <span className="punct">{punct(i)}</span>
+    </span>
+  ));
+}
+
 function host(url: string) {
   return new URL(url).host;
+}
+
+function expandLanguage(language: string) {
+  return (
+    {
+      en: "English",
+      es: "Spanish",
+      fr: "French",
+      jp: "Japanese",
+      vi: "Vietnamese",
+    }[language] || `"${language}"`
+  );
 }

@@ -14,6 +14,7 @@ export const resumeURL = "https://raw.githubusercontent.com/diamondburned/resume
 export type ObjectDocument = Extract<Person, { "@type": "Person" }> & {
   name?: string;
   resume?: ResumeSchema;
+  pronouns?: string[];
 };
 
 export async function load(): Promise<WithContext<ObjectDocument>> {

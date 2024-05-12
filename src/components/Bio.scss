@@ -230,11 +230,34 @@
 
     white-space: break-spaces;
 
+    p {
+      margin-bottom: 0;
+    }
+
     &::before,
     &::after {
       content: "✨";
       font-size: 2em;
       margin: 0 0.5rem;
+    }
+  }
+
+  #information {
+    font-size: 1.05em;
+
+    table {
+      margin: 0 auto;
+      th {
+        color: var(--pico-color-cyan-800);
+        padding-right: 0.5em;
+        text-align: right;
+      }
+      td {
+        color: var(--pico-color-cyan-600);
+        span.punct {
+          color: var(--pico-color-grey-500);
+        }
+      }
     }
   }
 
