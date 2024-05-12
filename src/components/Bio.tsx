@@ -207,6 +207,11 @@ function BioFooter() {
         <b>
           <a href="https://libdb.so">libdb.so</a>
         </b>
+        <br />
+        Source code on{" "}
+        <b>
+          <a href="https://github.com/diamondburned/cpsc-349-react-portfolio">GitHub</a>
+        </b>
       </p>
       <p>Trans rights are human rights 🏳️‍⚧️</p>
     </footer>
