@@ -1,7 +1,8 @@
+import { useEffect } from "react";
 import "./ErrorPage.scss";
 
 export default function ErrorPage({ error }: { error: unknown }) {
-  console.error(error);
+  useEffect(() => console.error("PAGE ERROR:", error), [error]);
   return (
     <div id="error-page">
       <div className="error-dialog">
