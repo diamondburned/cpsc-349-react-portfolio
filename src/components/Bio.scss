@@ -413,6 +413,30 @@
     }
   }
 
+  #contact {
+    h2,
+    h3,
+    a {
+      color: var(--pico-color-fuchsia-600);
+    }
+
+    #contact-pages {
+      ul {
+        padding-left: 1.5em;
+
+        li {
+          color: var(--pico-color-fuchsia-600);
+          padding: 0 0.25em;
+
+          a,
+          &::marker {
+            color: inherit;
+          }
+        }
+      }
+    }
+  }
+
   @keyframes wobble-up-down {
     0% {
       transform: translateY(0);

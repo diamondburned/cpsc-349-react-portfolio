@@ -2,7 +2,6 @@ import "./Bio.scss";
 import { type ObjectDocument } from "../lib/0xd14";
 import { links } from "../lib/0xd14";
 import { useState } from "react";
-import { BubblesOverlay } from "./Bubbles";
 
 export default function Bio({ object }: { object: ObjectDocument }) {
   const [avatarHovered, setHoverAvatar] = useState(false);
@@ -51,28 +50,6 @@ function BioContent({ object }: { object: ObjectDocument }) {
             .replace("Hi, I'm Diamond! ", "")
             .replace(" and ", "\n and ")}
         </p>
-      </section>
-
-      <section id="links">
-        <hgroup>
-          <h2>Links</h2>
-          <p>See my other pages!</p>
-        </hgroup>
-        <div className="content">
-          {links.map((link) => (
-            <a
-              key={link.url}
-              href={link.url!}
-              role="button"
-              style={{ "--color": link.color } as React.CSSProperties}
-              target="_blank"
-              className={"link " + (link.class || "")}
-            >
-              <img className="link-icon" src={link.iconURL} alt={link.name} />
-              <span className="link-name">{link.name}</span>
-            </a>
-          ))}
-        </div>
       </section>
 
       <section id="projects">
@@ -125,6 +102,62 @@ function BioContent({ object }: { object: ObjectDocument }) {
                 ))}
               </ul>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="contact">
+        <hgroup>
+          <h2>Contact</h2>
+          <p>Get in touch with me!</p>
+        </hgroup>
+        <div className="content">
+          <section id="contact-email">
+            <h3>Email</h3>
+            <p>
+              You may reach out to me at{" "}
+              {(object.email! as string[]).map((email, i) => (
+                <>
+                  <a href={email}>{email.replace("mailto:", "").replace("@", " [at] ")}</a>
+                  {i < (object.email! as string[]).length - 1 ? " or " : "."}
+                </>
+              ))}
+            </p>
+          </section>
+          <section id="contact-pages">
+            <h3>Pages</h3>
+            <p>I also have other pages on the internet!</p>
+            <ul>
+              {(object.url as string[]).map((url) => (
+                <li>
+                  <a href={url} target="_blank">
+                    {host(url)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section id="links">
+        <hgroup>
+          <h2>Links</h2>
+          <p>See my other pages!</p>
+        </hgroup>
+        <div className="content">
+          {links.map((link) => (
+            <a
+              key={link.url}
+              href={link.url!}
+              role="button"
+              style={{ "--color": link.color } as React.CSSProperties}
+              target="_blank"
+              className={"link " + (link.class || "")}
+            >
+              <img className="link-icon" src={link.iconURL} alt={link.name} />
+              <span className="link-name">{link.name}</span>
+            </a>
           ))}
         </div>
       </section>
