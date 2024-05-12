@@ -1,0 +1,32 @@
+#error-page {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .error-dialog {
+    border-left: 3px solid var(--pico-color-red-500);
+    padding: 1em 1.25em;
+    min-width: 300px;
+    background-color: var(--pico-color-red-50);
+  }
+
+  .prefix {
+    color: var(--pico-color-red-500);
+    font-size: 1.25em;
+    font-weight: 500;
+
+    &::before {
+      content: "⚠ ";
+      font-weight: 600;
+    }
+  }
+
+  .message {
+    color: var(--pico-color-red-800);
+    margin: 0;
+    margin-top: 0.35em;
+  }
+}
