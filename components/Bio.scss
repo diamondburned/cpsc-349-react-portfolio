@@ -36,7 +36,7 @@
 
   position: relative;
 
-  --background-shift-y: 200px;
+  --background-shift-y: 65vh;
   --background-color-0: var(--pico-color-pink-150);
   --background-color-1: var(--pico-color-fuchsia-100);
   --background-color-2: var(--pico-color-cyan-50);
@@ -49,7 +49,7 @@
     to bottom,
     var(--background-color-0) 0,
     var(--background-color-1) var(--background-shift-y),
-    var(--background-color-2) calc(var(--background-shift-y) + 600px),
+    var(--background-color-2) calc(var(--background-shift-y) * 2),
     var(--background-color-2) 100%
   );
 
