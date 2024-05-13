@@ -157,7 +157,7 @@ function Bubble({ scrollElement }: { scrollElement: HTMLElement }): JSX.Element 
   });
 
   const key = `${globalBubbleID++}`;
-  const durationSeconds = generateVariance(15, -10, 10);
+  const durationSeconds = generateVariance(10, -7, 5);
 
   const bubble = (
     <div

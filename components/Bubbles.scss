@@ -21,7 +21,7 @@
 
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.75);
-    opacity: 0.35;
+    opacity: calc(0.75 - 0.35 * var(--z-scale));
 
     position: absolute;
     width: 2em;
