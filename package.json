@@ -28,6 +28,8 @@
     "super-tiny-icons": "^0.6.0",
     "typescript": "^5.2.2",
     "typescript-language-server": "^4.3.3",
+    "vike": "^0.4.171",
+    "vike-react": "^0.4.9",
     "vite": "^5.2.0"
   },
   "prettier": {

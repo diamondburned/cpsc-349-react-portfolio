@@ -17,9 +17,9 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: Build
-        run: nix develop -c npm run build
+        run: nix develop -c bun run build
 
       - name: Upload to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: dist/client

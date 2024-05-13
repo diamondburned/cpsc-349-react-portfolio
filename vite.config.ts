@@ -1,8 +1,18 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import vike from "vike/plugin";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   clearScreen: false,
-  plugins: [react()],
+  plugins: [
+    vike({
+      prerender: true,
+    }),
+  ],
+  resolve: {
+    alias: {
+      lib: "/lib",
+      components: "/components",
+    },
+  },
 });

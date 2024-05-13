@@ -1,6 +1,6 @@
 import "./Bio.scss";
-import { type ObjectDocument } from "../lib/0xd14";
-import { links } from "../lib/0xd14";
+import { type ObjectDocument } from "lib/0xd14";
+import { links } from "lib/0xd14";
 import { useState } from "react";
 
 export default function Bio({ object }: { object: ObjectDocument }) {

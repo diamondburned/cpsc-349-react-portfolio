@@ -5,9 +5,11 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "allowSyntheticDefaultImports": true,
-	"struct": true,
+    "struct": true,
     "composite": true,
     "skipLibCheck": true,
+    "types": ["vite/client"],
+    "baseUrl": "./",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -22,6 +24,5 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
-  },
-  "include": ["src"],
+  }
 }
