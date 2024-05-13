@@ -52,7 +52,7 @@
   --avatar-hover-transition: 0.35s var(--animation-sine);
   transition: background-position var(--avatar-hover-transition);
 
-  &.avatar-hovered {
+  &:has(#info .avatar-box:hover) {
     background-position: 0 0;
   }
 

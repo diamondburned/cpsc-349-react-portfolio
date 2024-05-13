@@ -1,21 +1,14 @@
 import "./Bio.scss";
 import { type ObjectDocument } from "lib/0xd14";
 import { links } from "lib/0xd14";
-import { useState } from "react";
 
 export default function Bio({ object }: { object: ObjectDocument }) {
-  const [avatarHovered, setHoverAvatar] = useState(false);
-
   // TODO: add Bubbles component
   return (
-    <div id="bio" className={avatarHovered ? "avatar-hovered" : ""}>
+    <div id="bio">
       <div className="info-background">
         <header id="info">
-          <div
-            className="avatar-box"
-            onMouseEnter={() => setHoverAvatar(true)}
-            onMouseLeave={() => setHoverAvatar(false)}
-          >
+          <div className="avatar-box">
             <div className="avatar">
               <img
                 className="front"
