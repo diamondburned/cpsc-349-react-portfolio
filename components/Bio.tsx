@@ -1,11 +1,25 @@
 import "./Bio.scss";
 import { type ObjectDocument } from "lib/0xd14";
 import { links } from "lib/0xd14";
+import { BubblesOverlay } from "./Bubbles";
+import { useEffect, useRef, useState } from "react";
 
 export default function Bio({ object }: { object: ObjectDocument }) {
-  // TODO: add Bubbles component
+  // Wire up an effect where we create a new BubblesOverlay depending on the
+  // current ref. This is overkill because ref is only ever set once, but it's
+  // the React way.
+  const self = useRef<HTMLDivElement>(null);
+  const [bubblesOverlay, setBubblesOverlay] = useState<JSX.Element>(<></>);
+  useEffect(() => {
+    if (self.current) {
+      setBubblesOverlay(<BubblesOverlay scrollElement={self.current} />);
+    }
+  }, [self]);
+
   return (
-    <div id="bio">
+    <div id="bio" ref={self}>
+      {bubblesOverlay}
+
       <div className="info-background">
         <header id="info">
           <div className="avatar-box">

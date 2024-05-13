@@ -1,35 +1,12 @@
-@keyframes animateBubble {
-  0% {
-    margin-top: var(--start-y);
-  }
-  100% {
-    margin-top: -100vh;
-  }
-}
-
-@keyframes sideWays {
-  0% {
-    margin-left: 0px;
-  }
-  100% {
-    margin-left: calc(var(--wobble-scale) * 50px);
-  }
-}
+@use "sass:math";
 
 #bubbles-background {
-  --page-height: 100vh;
-
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: var(--page-height);
+  display: contents;
 
   .bubble {
     --left: -5%;
-    --size: 100px;
+    --z-depth: 1;
+    --z-scale: 1;
     --start-y: 1000px;
     --duration: 25s;
     --wobble-scale: 1;
@@ -37,18 +14,26 @@
 
     position: fixed;
     animation:
-      animateBubble var(--duration) linear infinite,
+      animateBubble var(--duration) linear 1 normal forwards,
       sideWays var(--wobble-duration) ease-in-out infinite alternate;
-    transform: scale(var(--scale));
     left: var(--left);
-    top: 5%;
+    top: 0%;
 
     border-radius: 50%;
-    background-color: var(--pico-color-grey-300);
+    background-color: rgba(0, 0, 0, 0.75);
+    opacity: 0.35;
 
     position: absolute;
-    width: var(--size);
-    height: var(--size);
+    width: 2em;
+    height: 2em;
+    font-size: 6em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: translateZ(calc(var(--z-depth) * 1px)) translateX(calc(-50%));
+    transform-style: flat;
   }
 
   opacity: 1;
@@ -60,5 +45,23 @@
 
   @media (prefers-reduced-motion: reduce) {
     display: none;
+  }
+
+  @keyframes animateBubble {
+    0% {
+      margin-top: var(--start-y);
+    }
+    100% {
+      margin-top: calc(-100vh + (-4em * var(--z-scale)));
+    }
+  }
+
+  @keyframes sideWays {
+    0% {
+      margin-left: 0px;
+    }
+    100% {
+      margin-left: calc(var(--wobble-scale) * 50px);
+    }
   }
 }
