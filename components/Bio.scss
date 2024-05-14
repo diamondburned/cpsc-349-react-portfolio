@@ -27,9 +27,7 @@
 #bio {
   --perspective: 3px;
 
-  height: 100vh;
   overflow: hidden;
-  overflow-y: auto;
 
   perspective: var(--perspective);
   perspective-origin: top;

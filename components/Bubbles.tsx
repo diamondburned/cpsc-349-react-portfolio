@@ -143,7 +143,7 @@ function Bubble({ scrollElement }: { scrollElement: HTMLElement }): JSX.Element 
   const scrollHeight = scrollElement.scrollHeight * zScale;
   const startY = (scrollElement.scrollTop + document.body.scrollHeight) * zScale;
 
-  const leftMargin = 50;
+  const leftMargin = 35;
   const left = biasedRandom() * (100 + leftMargin * 2) - leftMargin;
 
   console.debug("spawning bubble", {
