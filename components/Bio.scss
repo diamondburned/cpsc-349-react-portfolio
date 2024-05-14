@@ -96,6 +96,7 @@
   }
 
   .info-background {
+    pointer-events: none;
     padding-top: 20vh;
     transform: translateY(3em) translateZ(-1.5px) scale(1.5);
   }
@@ -142,6 +143,8 @@
         slight-rotate 3s;
       animation-iteration-count: infinite;
       animation-timing-function: var(--animation-quadratic), var(--animation-sine);
+
+      pointer-events: auto;
 
       .avatar {
         display: flex;

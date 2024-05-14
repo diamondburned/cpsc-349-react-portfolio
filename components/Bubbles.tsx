@@ -161,9 +161,13 @@ function Bubble({ scrollElement }: { scrollElement: HTMLElement }): JSX.Element 
 
   const bubble = (
     <div
-      id={`bubble-${key}`} // FUCK IT WE BALL
+      id={`bubble-${key}`}
       key={key}
       className="bubble"
+      onClick={() => {
+        const element = document.getElementById(`bubble-${key}`);
+        if (element) element.classList.add("popped");
+      }}
       style={
         {
           "--left": `${left}%`,

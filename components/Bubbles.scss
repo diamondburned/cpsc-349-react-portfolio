@@ -34,6 +34,12 @@
 
     transform: translateZ(calc(var(--z-depth) * 1px)) translateX(calc(-50%));
     transform-style: flat;
+
+    transition: opacity 0.15s ease-in-out;
+
+    &.popped {
+      opacity: 0;
+    }
   }
 
   opacity: 1;
