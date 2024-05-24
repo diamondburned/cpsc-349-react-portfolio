@@ -197,12 +197,11 @@ function generateVariance(value: number, min: number, max: number) {
   return Math.random() * (max - min) + min;
 }
 
-// biasedRandom returns random numbers that are more biased in the range [0.0,
-// 0.1] and [0.9, 1.0].
+// biasedRandom returns random numbers that are more biased.
 function biasedRandom(): number {
   const r = Math.random();
-  const b = 0.1;
-  if (Math.random() > 0.25) {
+  const b = 0.25;
+  if (Math.random() > 0.75) {
     return r * b + (r < 0.5 ? 0 : 1 - b);
   }
   return r;
